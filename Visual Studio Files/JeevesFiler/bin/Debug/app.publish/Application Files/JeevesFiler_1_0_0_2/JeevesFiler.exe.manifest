@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="JeevesFiler.exe" version="1.0.0.2" publicKeyToken="2f477b385e6a4959" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="JeevesFiler" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="JeevesFiler.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JeevesFiler.exe" size="37264">
+      <assemblyIdentity name="JeevesFiler" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>I93+Od85dLmjAsyYCtfEhAUrZ+dxSq7fPhKUMQttdy8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="JeevesFiler.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Jdogg\jd" issuerKeyHash="fd9297f6186b0cfe79b7bdcb3698e4633646aabf" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>TL2/j0eMmBphEwnPs+SdGfLAETXfWHs+bkqivLY+Iwg=</DigestValue></Reference></SignedInfo><SignatureValue>Ss+N3vFyp0DkQySg4RVH6OhCOplvyZVZJqD09YQeAEz1k/bUOLXyrit17qW7Dr47PTt5cncNPBeYg6SBQmunp7Dy8y87YNHrFISmUh/p9HHAs10zBIuLg7XKR3UyYkEj3hRpSjTe2LZlRQmR2Vo/rDxV3Ly88ONAP2iCrKQ2nFw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>nfiHKctgmk6WcmV7iKbKbs9n0H2FN+dWP9qkoE6okFXwMC3RUX6/EZOjU5syFt+R5gqebEdhJusUBPibUaDvLUyRC1YX0jWudbnzaNThVZit39wN5eBsuNdWnchHBEo//XyrusWhHgpObGJdrYWHDvAwNq2H0AndoiIEnS6D1R0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="08233eb6bca24a6e3e7b58df3511c0f2199de4b3cf0913611a988c478fbfbd4c" Description="" Url=""><as:assemblyIdentity name="JeevesFiler.exe" version="1.0.0.2" publicKeyToken="2f477b385e6a4959" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Jdogg\jd</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>pWisc+RcXsg2vnZELpGPWJCBjpnsYdbgVIgXJqsDPC8=</DigestValue></Reference></SignedInfo><SignatureValue>Ojh2yqSFW4O6E2SsQIGWCqDIxq1HYVcXi3Xfc+tUVvpxoLjHauo2+SdulxoTW3yLUEceomnoWlzhK4MMnrZhda8p8VSsmadQu7VkFoAh3X6/uYlF/yuqg8B9fNj3URnV3aW4o5ExT/na82EQytuNi2sGYpTA1ORQdXXrfxQlNcE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>nfiHKctgmk6WcmV7iKbKbs9n0H2FN+dWP9qkoE6okFXwMC3RUX6/EZOjU5syFt+R5gqebEdhJusUBPibUaDvLUyRC1YX0jWudbnzaNThVZit39wN5eBsuNdWnchHBEo//XyrusWhHgpObGJdrYWHDvAwNq2H0AndoiIEnS6D1R0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBuTCCASKgAwIBAgIQPopR677a0oRGWapGWVpfrTANBgkqhkiG9w0BAQsFADAbMRkwFwYDVQQDHhAASgBkAG8AZwBnAFwAagBkMB4XDTE2MDQxNjIwNTgxNVoXDTE3MDQxNzAyNTgxNVowGzEZMBcGA1UEAx4QAEoAZABvAGcAZwBcAGoAZDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAnfiHKctgmk6WcmV7iKbKbs9n0H2FN+dWP9qkoE6okFXwMC3RUX6/EZOjU5syFt+R5gqebEdhJusUBPibUaDvLUyRC1YX0jWudbnzaNThVZit39wN5eBsuNdWnchHBEo//XyrusWhHgpObGJdrYWHDvAwNq2H0AndoiIEnS6D1R0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQAbUHdu5yq4059mKCcMWrPl32L0yjgRIB0ISUNUPsU5RvuBhaFGYZZ77MXgI6NPVTtS1cdqmO9X2b9gXpKKDbcSB9wnBwPVWspN8qntbEvJyMeCRY3btqEXNv4XQNS72IFIZyhwUAVphvqeffHP8WcwA2f74eaAT8Fb4zkxrlBd4A==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
