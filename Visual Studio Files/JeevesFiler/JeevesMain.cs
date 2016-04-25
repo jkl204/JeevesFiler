@@ -585,6 +585,9 @@ namespace JeevesFiler
         //may pass in index to update, if not passed, will update entire box
         private void updateSortedBox(int index = -1)
         {
+            //check if there are items
+            if(SortedBox.Items.Count < 1) { return; }
+
             createFileRenames();
             int pad;
             string display = "";
