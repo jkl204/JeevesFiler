@@ -166,6 +166,8 @@ namespace JeevesFiler
                 if (MessageBox.Show("Rename Files?", "Confirm Changes", MessageBoxButtons.YesNo) == DialogResult.Yes) { renameFiles(); }
             }
             else { MessageBox.Show("Please preview the renaming schema before changing the file names."); }
+
+            RenameProgress.Value = 0;
         }
 
         //**exit program button click handler
@@ -1093,10 +1095,13 @@ namespace JeevesFiler
         //return true if all files are not in use
         private Boolean checkOpenFiles()
         {
+            double ct = sortedFiles.Length, i = 0;
+
             foreach(fileToRename f in sortedFiles)
             {
                 FileInfo temp = new FileInfo(f.longPath);
                 FileStream stream = null;
+                i += 1;
                 try
                 {
                     stream = temp.Open(FileMode.Open, FileAccess.Read, FileShare.None);
@@ -1109,6 +1114,7 @@ namespace JeevesFiler
                 finally
                 {
                     if (stream != null) { stream.Close(); }
+                    RenameProgress.Value = (int)Math.Floor(75 * (i / ct));
                 }
             }
 
@@ -1120,8 +1126,12 @@ namespace JeevesFiler
         {
             SortedBox.Items.Clear();
 
+            double ct = sortedFiles.Length, i = 0;
+
             foreach (fileToRename f in sortedFiles)
             {
+                i += 1;
+
                 if (f.renameFlag && f.longPath != "" && f.renameLong != "")
                 {
                     try
@@ -1129,6 +1139,7 @@ namespace JeevesFiler
                         //MessageBox.Show(f.longPath + "=>" + f.renameLong);
                         System.IO.File.Move(f.longPath, f.renameLong);
                         SortedBox.Items.Add(f.fileName + " renamed to " + f.renameShort);
+                        RenameProgress.Value = 75 + (int)Math.Floor(25 * (i / ct));
                     }
                     catch (Exception e)
                     {

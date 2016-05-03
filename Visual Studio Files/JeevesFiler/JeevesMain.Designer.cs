@@ -81,6 +81,7 @@
             this.previewFilters = new System.Windows.Forms.Button();
             this.SortedBox = new System.Windows.Forms.CheckedListBox();
             this.ExitOut = new System.Windows.Forms.Button();
+            this.RenameProgress = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.sortByGroupBox.SuspendLayout();
@@ -120,7 +121,7 @@
             // 
             // commitSort
             // 
-            this.commitSort.Location = new System.Drawing.Point(431, 217);
+            this.commitSort.Location = new System.Drawing.Point(433, 215);
             this.commitSort.Name = "commitSort";
             this.commitSort.Size = new System.Drawing.Size(75, 23);
             this.commitSort.TabIndex = 4;
@@ -205,7 +206,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(348, 256);
+            this.label5.Location = new System.Drawing.Point(348, 278);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 13);
             this.label5.TabIndex = 13;
@@ -295,7 +296,7 @@
             this.groupBox1.Controls.Add(this.SuffixTextB);
             this.groupBox1.Controls.Add(this.PrefixCounterChk);
             this.groupBox1.Controls.Add(this.SuffixCounterChk);
-            this.groupBox1.Location = new System.Drawing.Point(233, 50);
+            this.groupBox1.Location = new System.Drawing.Point(233, 55);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(337, 153);
             this.groupBox1.TabIndex = 23;
@@ -441,7 +442,7 @@
             this.groupBox2.Controls.Add(this.LexFilterSelectEndTextB);
             this.groupBox2.Controls.Add(this.LexFilterExcludeStartTextB);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(230, 275);
+            this.groupBox2.Location = new System.Drawing.Point(230, 297);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(337, 114);
             this.groupBox2.TabIndex = 24;
@@ -484,7 +485,7 @@
             this.sortByGroupBox.Controls.Add(this.SizeRadio);
             this.sortByGroupBox.Controls.Add(this.TimeRadio);
             this.sortByGroupBox.Controls.Add(this.LexRadio);
-            this.sortByGroupBox.Location = new System.Drawing.Point(230, 400);
+            this.sortByGroupBox.Location = new System.Drawing.Point(230, 422);
             this.sortByGroupBox.Name = "sortByGroupBox";
             this.sortByGroupBox.Size = new System.Drawing.Size(101, 103);
             this.sortByGroupBox.TabIndex = 25;
@@ -527,7 +528,7 @@
             // 
             this.groupBox4.Controls.Add(this.DscOrderRadio);
             this.groupBox4.Controls.Add(this.AscOrderRadio);
-            this.groupBox4.Location = new System.Drawing.Point(457, 403);
+            this.groupBox4.Location = new System.Drawing.Point(457, 425);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(110, 100);
             this.groupBox4.TabIndex = 26;
@@ -581,7 +582,7 @@
             this.groupBox5.Controls.Add(this.GroupByYrRadio);
             this.groupBox5.Controls.Add(this.GroupByExtRadio);
             this.groupBox5.Controls.Add(this.GroupByNoneRadio);
-            this.groupBox5.Location = new System.Drawing.Point(352, 403);
+            this.groupBox5.Location = new System.Drawing.Point(352, 425);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(88, 100);
             this.groupBox5.TabIndex = 29;
@@ -622,7 +623,7 @@
             // 
             // previewFilters
             // 
-            this.previewFilters.Location = new System.Drawing.Point(306, 217);
+            this.previewFilters.Location = new System.Drawing.Point(306, 215);
             this.previewFilters.Name = "previewFilters";
             this.previewFilters.Size = new System.Drawing.Size(75, 23);
             this.previewFilters.TabIndex = 30;
@@ -651,11 +652,19 @@
             this.ExitOut.UseVisualStyleBackColor = true;
             this.ExitOut.Click += new System.EventHandler(this.ExitOut_Click);
             // 
+            // RenameProgress
+            // 
+            this.RenameProgress.Location = new System.Drawing.Point(233, 246);
+            this.RenameProgress.Name = "RenameProgress";
+            this.RenameProgress.Size = new System.Drawing.Size(337, 23);
+            this.RenameProgress.TabIndex = 33;
+            // 
             // JeevesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 544);
+            this.Controls.Add(this.RenameProgress);
             this.Controls.Add(this.ExitOut);
             this.Controls.Add(this.SortedBox);
             this.Controls.Add(this.previewFilters);
@@ -743,6 +752,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox IgnorePrefixTextB;
         private System.Windows.Forms.Button ExitOut;
+        private System.Windows.Forms.ProgressBar RenameProgress;
     }
 }
 
