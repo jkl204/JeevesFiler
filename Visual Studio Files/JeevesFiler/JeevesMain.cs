@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -70,12 +71,13 @@ namespace JeevesFiler
 
         private string folderPath;
         private string[] files;
-        private fileToRename[] sortedFiles;
+        private fileToRename[] sortedFiles, partialFiles;
         private delegate int compDelegate(fileToRename arg1, fileToRename arg2);
         private compDelegate compMethod;
         private Boolean sortedBoxInit = false;
         private List<string> extensionTokenList = new List<string>();
         private List<string> yearTokenList = new List<string>();
+        private static int recursionCt = 0;
 
         //set default values for comboboxes on form after init
         public JeevesForm()
@@ -97,10 +99,30 @@ namespace JeevesFiler
             }
         }
 
+        //thread delegate to expand stack size
+        public void threadRecursion()
+        {
+            //Console.WriteLine("Childthread");
+            try
+            {
+                insertionSort(ref sortedFiles);
+            }
+
+            catch (ThreadAbortException e)
+            {
+                //Console.WriteLine("Thread Abort Exception");
+            }
+            finally
+            {
+                //Console.WriteLine("Couldn't catch the Thread Exception");
+            }
+        }
+
         //**preview button click, check if there are filters that need to be applied,
         //sort, create the renamed files list, then display them
         private void previewFilters_Click(object sender, EventArgs e)
         {
+
             if (sortedFiles != null)
             {
                 SortedBox.Items.Clear();
@@ -108,17 +130,30 @@ namespace JeevesFiler
                 initSortedFiles();
                 applyFilters();
                 determineMethod(sortByRadioChecked());
+
+                //creating a thread for the insertion sort to increase stack size
+                ThreadStart childrec = new ThreadStart(threadRecursion);
+                Thread recurseThread = new Thread(childrec, 4194304);
+
                 if (GroupByExtRadio.Checked)
                 {
+                    previewFilters.Text = "sorting...";
                     extensionGroupSort(ref sortedFiles);
+                    previewFilters.Text = "preview";
                 }
                 else if (GroupByYrRadio.Checked)
                 {
+                    previewFilters.Text = "sorting...";
                     yearGroupSort(ref sortedFiles);
+                    previewFilters.Text = "preview";
                 }
                 else
                 {
-                    insertionSort(ref sortedFiles);
+                    previewFilters.Text = "sorting...";
+                    recurseThread.Start();
+                    recurseThread.Join();
+                    recurseThread.Abort();
+                    previewFilters.Text = "preview";
                 }
 
                 createFileRenames();
@@ -148,24 +183,27 @@ namespace JeevesFiler
                 //set the flag saying that the sortedBox has been initialized
                 sortedBoxInit = true;
             }
+
         }
 
         //**rename files click button handler
         private void commitSort_Click(object sender, EventArgs e)
         {
-            if (!checkDuplicateRenames())
+            if (!sortedBoxInit)
+            {
+                MessageBox.Show("Please preview the renaming schema before changing the file names.");
+            }
+            else if (!checkDuplicateRenames())
             {
                 MessageBox.Show("Duplicate renamed files exist, please double check your renaming scheme and click preview before proceeding.");
             }
-            else if(!checkOpenFiles())
+            else
             {
-                return;
+                if (MessageBox.Show("Rename Files?", "Confirm Changes", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (checkOpenFiles()) { renameFiles(); }
+                }
             }
-            else if (sortedBoxInit)
-            {
-                if (MessageBox.Show("Rename Files?", "Confirm Changes", MessageBoxButtons.YesNo) == DialogResult.Yes) { renameFiles(); }
-            }
-            else { MessageBox.Show("Please preview the renaming schema before changing the file names."); }
 
             RenameProgress.Value = 0;
         }
@@ -220,9 +258,20 @@ namespace JeevesFiler
         //**InsertionSort, should change to quicksort should the array size get big
         private void insertionSort(ref fileToRename[] filesArray, int index = 0, int compare = -1)
         {
+
+            recursionCt++;
+
+            if (recursionCt > 14000)
+            {
+                recursionCt = 0;
+                MessageBox.Show("Sorry, file list could not be completely sorted due to sorting and memory issues; please choose a smaller batch of files to rename.");
+                return;
+            }
+
             //exit condition, array should be sorted at this point
             if (index + 1 > filesArray.Length)
             {
+                recursionCt = 0;
                 return;
             }
 
@@ -386,6 +435,25 @@ namespace JeevesFiler
             return DateTime.Compare(arg2.fileCreation, arg1.fileCreation);
         }
 
+        //thread delegate to expand stack size using parts of the sorted files array
+        public void threadRecursionPartial()
+        {
+            //Console.WriteLine("Childthread");
+            try
+            {
+                insertionSort(ref partialFiles);
+            }
+
+            catch (ThreadAbortException e)
+            {
+                //Console.WriteLine("Thread Abort Exception");
+            }
+            finally
+            {
+                //Console.WriteLine("Couldn't catch the Thread Exception");
+            }
+        }
+
         //**function to handle grouping by extension then sorting
         //terribly inefficient, makes me wish I had used lists for everything
         private void extensionGroupSort(ref fileToRename[] files)
@@ -422,15 +490,28 @@ namespace JeevesFiler
 
                 i = 0;
 
+                //creating a thread for the insertion sort to increase stack size
+                ThreadStart childrec = new ThreadStart(threadRecursionPartial);
+                Thread recurseThread = new Thread(childrec, 4194304);
+
+                partialFiles = tempArray;
+
                 //sort the files with the same extension
-                insertionSort(ref tempArray);
+                recurseThread.Start();
+                recurseThread.Join();
+                recurseThread.Abort();
+                //insertionSort(ref tempArray);
+
+                tempArray = partialFiles;
 
                 //add them to our final sorted array, works in order of extension token list
-                foreach(fileToRename g in tempArray)
+                foreach (fileToRename g in tempArray)
                 {
                     dummy[j] = new fileToRename(g.longPath, g.fileName, g.renameLong, g.renameShort, g.renameFlag, g.fileCreation);
                     j += 1;
                 }
+
+                partialFiles = null;
             }
 
             //assign results
@@ -476,15 +557,28 @@ namespace JeevesFiler
 
                 i = 0;
 
-                //sort the files with the same year
-                insertionSort(ref tempArray);
+                //creating a thread for the insertion sort to increase stack size
+                ThreadStart childrec = new ThreadStart(threadRecursionPartial);
+                Thread recurseThread = new Thread(childrec, 4194304);
 
+                partialFiles = tempArray;
+
+                //sort the files with the same year
+                recurseThread.Start();
+                recurseThread.Join();
+                recurseThread.Abort();
+                //insertionSort(ref tempArray);
+
+                tempArray = partialFiles;
+                
                 //and add them to the resulting sorted array
                 foreach (fileToRename g in tempArray)
                 {
                     dummy[j] = new fileToRename(g.longPath, g.fileName, g.renameLong, g.renameShort, g.renameFlag, g.fileCreation);
                     j += 1;
                 }
+
+                partialFiles = null;
             }
 
             //assign the results
