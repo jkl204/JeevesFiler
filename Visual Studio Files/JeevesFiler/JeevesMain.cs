@@ -612,6 +612,19 @@ namespace JeevesFiler
             }
         }
 
+        //**form function to modify Gui side Core Text Box, CurrentCore Checkbox
+        private void currentCoreChk_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CurrentCoreChk.Checked)
+            {
+                CoreTextB.Enabled = false;
+            }
+            else
+            {
+                CoreTextB.Enabled = true;
+            }
+        }
+
         //**event handler for PrefixCounter Checkbox to ensure that PrefixDate is not concurrently checked, manages display
         private void PrefixCounterChk_CheckedChanged(object sender, EventArgs e)
         {
@@ -1129,6 +1142,8 @@ namespace JeevesFiler
 
             for (int i = 0; i < sortedFiles.Length; i++)
             {
+                if (CurrentCoreChk.Checked) { core = sortedFiles[i].justFile; }
+
                 if (PrefixDateChk.Checked && sortedFiles[i].renameFlag)
                 {
                     prefix = sortedFiles[i].fileCreation.ToString(PrefixDateCmbo.SelectedItem.ToString());

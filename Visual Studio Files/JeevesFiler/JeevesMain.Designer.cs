@@ -82,6 +82,8 @@
             this.SortedBox = new System.Windows.Forms.CheckedListBox();
             this.ExitOut = new System.Windows.Forms.Button();
             this.RenameProgress = new System.Windows.Forms.ProgressBar();
+            this.label16 = new System.Windows.Forms.Label();
+            this.CurrentCoreChk = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.sortByGroupBox.SuspendLayout();
@@ -135,9 +137,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "prefix";
+            this.label2.Text = "Prefix";
             // 
             // PrefixTextB
             // 
@@ -151,9 +153,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "core";
+            this.label3.Text = "Core";
             // 
             // CoreTextB
             // 
@@ -167,9 +169,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 109);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(33, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "suffix";
+            this.label4.Text = "Suffix";
             // 
             // SuffixTextB
             // 
@@ -182,7 +184,7 @@
             // 
             this.PrefixCounterChk.AutoSize = true;
             this.PrefixCounterChk.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.PrefixCounterChk.Location = new System.Drawing.Point(200, 50);
+            this.PrefixCounterChk.Location = new System.Drawing.Point(200, 47);
             this.PrefixCounterChk.Name = "PrefixCounterChk";
             this.PrefixCounterChk.Size = new System.Drawing.Size(88, 17);
             this.PrefixCounterChk.TabIndex = 11;
@@ -194,7 +196,7 @@
             // 
             this.SuffixCounterChk.AutoSize = true;
             this.SuffixCounterChk.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.SuffixCounterChk.Location = new System.Drawing.Point(199, 123);
+            this.SuffixCounterChk.Location = new System.Drawing.Point(199, 120);
             this.SuffixCounterChk.Name = "SuffixCounterChk";
             this.SuffixCounterChk.Size = new System.Drawing.Size(88, 17);
             this.SuffixCounterChk.TabIndex = 12;
@@ -278,6 +280,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CurrentCoreChk);
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.PrefixDateCmbo);
             this.groupBox1.Controls.Add(this.SuffixDateCmbo);
             this.groupBox1.Controls.Add(this.label14);
@@ -353,7 +357,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(230, 17);
+            this.label14.Location = new System.Drawing.Point(230, 14);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(55, 13);
             this.label14.TabIndex = 20;
@@ -363,7 +367,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(188, 78);
+            this.label1.Location = new System.Drawing.Point(181, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 19;
@@ -373,7 +377,7 @@
             // 
             this.SuffixDateChk.AutoSize = true;
             this.SuffixDateChk.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.SuffixDateChk.Location = new System.Drawing.Point(187, 106);
+            this.SuffixDateChk.Location = new System.Drawing.Point(187, 103);
             this.SuffixDateChk.Name = "SuffixDateChk";
             this.SuffixDateChk.Size = new System.Drawing.Size(63, 17);
             this.SuffixDateChk.TabIndex = 18;
@@ -385,7 +389,7 @@
             // 
             this.PrefixDateChk.AutoSize = true;
             this.PrefixDateChk.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.PrefixDateChk.Location = new System.Drawing.Point(187, 34);
+            this.PrefixDateChk.Location = new System.Drawing.Point(187, 31);
             this.PrefixDateChk.Name = "PrefixDateChk";
             this.PrefixDateChk.Size = new System.Drawing.Size(63, 17);
             this.PrefixDateChk.TabIndex = 17;
@@ -397,7 +401,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label13.Location = new System.Drawing.Point(281, 105);
+            this.label13.Location = new System.Drawing.Point(281, 102);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(31, 13);
             this.label13.TabIndex = 16;
@@ -407,7 +411,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label12.Location = new System.Drawing.Point(281, 32);
+            this.label12.Location = new System.Drawing.Point(281, 29);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 15;
@@ -416,7 +420,7 @@
             // SuffixDigitTextB
             // 
             this.SuffixDigitTextB.Enabled = false;
-            this.SuffixDigitTextB.Location = new System.Drawing.Point(284, 120);
+            this.SuffixDigitTextB.Location = new System.Drawing.Point(284, 117);
             this.SuffixDigitTextB.Name = "SuffixDigitTextB";
             this.SuffixDigitTextB.Size = new System.Drawing.Size(39, 20);
             this.SuffixDigitTextB.TabIndex = 14;
@@ -424,7 +428,7 @@
             // PrefixDigitTextB
             // 
             this.PrefixDigitTextB.Enabled = false;
-            this.PrefixDigitTextB.Location = new System.Drawing.Point(284, 47);
+            this.PrefixDigitTextB.Location = new System.Drawing.Point(284, 44);
             this.PrefixDigitTextB.Name = "PrefixDigitTextB";
             this.PrefixDigitTextB.Size = new System.Drawing.Size(39, 20);
             this.PrefixDigitTextB.TabIndex = 13;
@@ -659,6 +663,28 @@
             this.RenameProgress.Size = new System.Drawing.Size(337, 23);
             this.RenameProgress.TabIndex = 33;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label16.Location = new System.Drawing.Point(181, 89);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(135, 13);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "********************************";
+            // 
+            // CurrentCoreChk
+            // 
+            this.CurrentCoreChk.AutoSize = true;
+            this.CurrentCoreChk.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.CurrentCoreChk.Location = new System.Drawing.Point(187, 73);
+            this.CurrentCoreChk.Name = "CurrentCoreChk";
+            this.CurrentCoreChk.Size = new System.Drawing.Size(108, 17);
+            this.CurrentCoreChk.TabIndex = 35;
+            this.CurrentCoreChk.Text = "use current name";
+            this.CurrentCoreChk.UseVisualStyleBackColor = true;
+            this.CurrentCoreChk.CheckedChanged += new System.EventHandler(this.currentCoreChk_CheckedChanged);
+            // 
             // JeevesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -753,6 +779,8 @@
         private System.Windows.Forms.TextBox IgnorePrefixTextB;
         private System.Windows.Forms.Button ExitOut;
         private System.Windows.Forms.ProgressBar RenameProgress;
+        private System.Windows.Forms.CheckBox CurrentCoreChk;
+        private System.Windows.Forms.Label label16;
     }
 }
 
